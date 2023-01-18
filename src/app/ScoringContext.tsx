@@ -12,6 +12,7 @@ export function ScoringProvider({ children }: { children: React.ReactNode }) {
 
   const addAnswered = useMemo(() => {
     return (id: number, correct: boolean) => {
+      if (answered.includes(id)) return;
       setAnswered((answered) => {
         return [...answered, id];
       });
