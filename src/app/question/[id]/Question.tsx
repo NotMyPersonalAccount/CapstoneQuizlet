@@ -2,8 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useScoring } from "../../ScoringContext";
 
-export default function QuestionInput({
+export default function Question({
   answer,
   id,
   max,
@@ -13,12 +14,19 @@ export default function QuestionInput({
   max: number;
 }) {
   const router = useRouter();
+  const [score, addAnswered] = useScoring();
   const [input, setInput] = useState("");
   const [submitted, setSubmitted] = useState(false);
   return (
     <>
       <input onChange={(e) => setInput(e.target.value)} />
-      <button onClick={() => setSubmitted(true)} disabled={submitted}>
+      <button
+        onClick={() => {
+          setSubmitted(true);
+          addAnswered(id, input === answer);
+        }}
+        disabled={submitted}
+      >
         Submit
       </button>
       {submitted && (
@@ -40,6 +48,9 @@ export default function QuestionInput({
           </div>
         </>
       )}
+      <p>
+        Score: {score}/{max + 1}
+      </p>
     </>
   );
 }

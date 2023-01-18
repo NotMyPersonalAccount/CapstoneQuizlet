@@ -1,4 +1,4 @@
-import QuestionInput from "./QuestionInput";
+import Question from "./Question";
 
 const questions = [
   { question: "What is 5+6?", answer: "11" },
@@ -17,7 +17,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   return (
     <>
       <p>{question}</p>
-      <QuestionInput id={id} answer={answer} max={questions.length - 1} />
+      <Question id={id} answer={answer} max={questions.length - 1} />
     </>
   );
 }

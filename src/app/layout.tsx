@@ -1,4 +1,5 @@
 import "./globals.css";
+import { ScoringProvider } from "./ScoringContext";
 
 export default function RootLayout({
   children,
@@ -6,9 +7,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <head />
-      <body>{children}</body>
-    </html>
+    <ScoringProvider>
+      <html lang="en">
+        <head />
+        <body>{children}</body>
+      </html>
+    </ScoringProvider>
   );
 }
