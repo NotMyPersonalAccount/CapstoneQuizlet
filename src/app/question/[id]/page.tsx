@@ -1,4 +1,4 @@
-import Navigation from "./Navigation";
+import QuestionInput from "./QuestionInput";
 
 const questions = [
   { question: "What is 5+6?", answer: "11" },
@@ -16,9 +16,8 @@ export default async function Page({ params }: { params: { id: string } }) {
   const { question, answer } = await getQuestion(id);
   return (
     <>
-      Question {question}
-      Answer {answer}
-      <Navigation id={id} max={questions.length} />
+      <p>{question}</p>
+      <QuestionInput id={id} answer={answer} max={questions.length - 1} />
     </>
   );
 }
