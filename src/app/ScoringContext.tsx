@@ -7,18 +7,18 @@ const ScoringContext = createContext<
 >(undefined);
 
 export function ScoringProvider({ children }: { children: React.ReactNode }) {
-  const [score, setScore] = useState(0);
-  const [answered, setAnswered] = useState<number[]>([]);
+  const [answered, setAnswered] = useState<{ [key: string]: boolean }>({});
 
   const addAnswered = useMemo(() => {
     return (id: number, correct: boolean) => {
-      if (answered.includes(id)) return;
-      setAnswered((answered) => {
-        return [...answered, id];
-      });
-      if (correct) setScore((score) => score + 1);
+      if (answered[id] !== undefined) return;
+      setAnswered((answered) => ({ ...answered, [id]: correct }));
     };
-  }, [setAnswered]);
+  }, [answered]);
+  const score = useMemo(() => {
+    return Object.values(answered).filter((correct) => correct).length;
+  }, [answered]);
+  console.log(answered);
 
   return (
     <ScoringContext.Provider value={[score, addAnswered]}>
