@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className="flex h-screen justify-center items-center">
       <div className="rounded-lg bg-gray-100 shadow-lg px-8 py-4 max-w-2xl">
-        <h1 className="text-6xl">Quizlet Ripoff</h1>
+        <h1 className="text-6xl">Piglet.com</h1>
         <span className="block text-xl my-4">
           Welcome to the absolute greatest flash card app on the planet! This is
           absolutely <span className="italic">not</span> a Quizlet ripoff.
